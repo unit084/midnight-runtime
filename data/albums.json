@@ -1,0 +1,113 @@
+[
+  {
+    "title": "Rainy Night Coding",
+    "cover": "assets/covers/rainy-night-coding.jpg",
+    "release": "2026-10-17",
+    "min": 72,
+    "spotify": null,
+    "samples": [],
+    "tracks": [
+      "Low Bit Rain",
+      "Tremolo Street",
+      "Spring Tank",
+      "Dark Clavier",
+      "Snap Circuit",
+      "Long Haul",
+      "Shortwave",
+      "Night Bus",
+      "Harbor Lights",
+      "Glass Rim",
+      "Idle Current",
+      "Power Down"
+    ]
+  },
+  {
+    "title": "Late Night Coding",
+    "cover": "assets/covers/late-night-coding.jpg",
+    "release": "2026-10-10",
+    "min": 92,
+    "spotify": null,
+    "samples": [],
+    "tracks": [
+      "Cold Boot",
+      "Phase Register",
+      "Filament",
+      "Ground Loop",
+      "Gutter Rhythm",
+      "Split Channel",
+      "Five Count",
+      "Echo Cascade",
+      "Telemetry Night",
+      "Noise Floor",
+      "Night Shuffle",
+      "Gate Array",
+      "Substation",
+      "Night Foundry",
+      "Long Exposure",
+      "Aether Line",
+      "Tape Drift",
+      "Cold Bow",
+      "Reed Signal",
+      "Breathing Machine",
+      "Reverse Clock",
+      "Lullaby Protocol",
+      "Sonar Depth"
+    ]
+  },
+  {
+    "title": "Night Grid",
+    "cover": "assets/covers/night-grid.jpg",
+    "release": "2026-10-03",
+    "min": 88,
+    "spotify": null,
+    "samples": [],
+    "tracks": [
+      "Cipher Lantern",
+      "Obsidian Packet",
+      "Voltage Trace",
+      "Neon Cache",
+      "Prism Carrier",
+      "Ghost Lattice",
+      "Magnetic Avenue",
+      "Carbon Latch",
+      "Concrete Handshake",
+      "Cathode Haze",
+      "Deadband",
+      "Blue Hour Terminal",
+      "Glass Overpass",
+      "Checksum Drift",
+      "Offset Drive",
+      "Hollow Observatory",
+      "Folded Signal",
+      "Infrared Junction",
+      "Ternary Window",
+      "Sync Threshold",
+      "Bitplane Shift",
+      "Null Meridian"
+    ]
+  },
+  {
+    "title": "Focus Protocol",
+    "cover": "assets/covers/focus-protocol.jpg",
+    "release": "2026-09-26",
+    "min": 36,
+    "spotify": null,
+    "samples": [
+      {
+        "title": "Night Compile",
+        "src": "assets/audio/night-compile.mp3"
+      }
+    ],
+    "tracks": [
+      "Silent Subnet",
+      "Window Signal",
+      "Afterimage Rain",
+      "Orbital Relay",
+      "Rainline Protocol",
+      "Static Corridor",
+      "Night Compile",
+      "Bandwidth Sleep",
+      "Graphite Relay"
+    ]
+  }
+]

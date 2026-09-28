@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Midnight Runtime — Stay in the flow after dark</title>
+<meta name="description" content="Dark electronic soundscapes engineered for coding and uninterrupted deep work. Long mixes on YouTube, albums on Spotify.">
+<meta name="theme-color" content="#070A12">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; media-src 'self'; font-src 'self'; connect-src 'self'; frame-src https://www.youtube-nocookie.com; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="canonical" href="https://unit084.github.io/midnight-runtime/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Midnight Runtime">
+<meta property="og:title" content="Midnight Runtime — Stay in the flow after dark">
+<meta property="og:description" content="Dark electronic soundscapes engineered for coding and uninterrupted deep work.">
+<meta property="og:url" content="https://unit084.github.io/midnight-runtime/">
+<meta property="og:image" content="https://unit084.github.io/midnight-runtime/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Midnight Runtime">
+<meta name="twitter:description" content="Stay in the flow after dark.">
+<meta name="twitter:image" content="https://unit084.github.io/midnight-runtime/assets/img/og-image.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png">
+<link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="preload" href="assets/fonts/Hybrid_b.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/app.js" defer></script>
+</head>
+<body>
+<svg class="sr" width="0" height="0" aria-hidden="true">
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .5 12 31 31 0 0 0 1 16.8a3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .5-4.8 31 31 0 0 0-.5-4.8zM9.8 15.1V8.9l5.4 3.1z"/></symbol>
+  <symbol id="i-sp" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 1a11 11 0 1 0 0 22 11 11 0 0 0 0-22zm5 15.9a.7.7 0 0 1-1 .2c-2.7-1.6-6-2-10-1.1a.7.7 0 1 1-.3-1.4c4.3-1 8-.5 11 1.3.3.2.4.7.2 1zm1.3-3a.9.9 0 0 1-1.2.3c-3-1.9-7.7-2.4-11.3-1.3a.9.9 0 1 1-.5-1.7c4.1-1.2 9.2-.6 12.7 1.5.4.3.5.8.3 1.2zm.1-3.1C14.8 8.6 8.9 8.4 5.5 9.4a1 1 0 1 1-.6-2c3.9-1.2 10.4-1 14.5 1.5a1 1 0 0 1-1 1.9z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" d="M4 6h16v14H4zM4 10h16M8 3v5M16 3v5"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M3 12h1M7 8v8M11 5v14M15 9v6M19 7v10M22 12h-1"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+</svg>
+<a class="skip" href="#mixes" data-i18n="skip">Skip to content</a>
+
+<canvas id="grid" aria-hidden="true"></canvas>
+<div id="glow" aria-hidden="true"></div>
+<div id="ring" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Main">
+  <a class="brand" href="#top" aria-label="Midnight Runtime"><img src="assets/img/logo-mr.png" alt="" width="44" height="44"><span>MIDNIGHT RUNTIME</span></a>
+  <div class="spacer"></div>
+  <div class="navlinks">
+    <a href="#mixes"><svg class="ico"><use href="#i-yt"/></svg>YouTube</a>
+    <a href="#albums"><svg class="ico"><use href="#i-sp"/></svg>Spotify</a>
+  </div>
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <button type="button" data-lang="pl" aria-pressed="false">PL</button>
+  </div>
+</nav>
+
+<main id="top">
+<section class="hero" aria-label="Midnight Runtime">
+  <div class="hero-media" id="heroMedia"></div>
+  <div class="shade-x"></div><div class="shade-b"></div><div class="shade-t"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="kicker"><span class="sq"></span><span data-i18n="heroKicker">MR // Dark electronic for deep work</span></div>
+    <h1 aria-label="Midnight Runtime"><span id="tA" aria-hidden="true">MIDNIGHT</span><span id="tB" class="b" aria-hidden="true">RUNTIME</span></h1>
+    <div class="term" id="term" aria-hidden="true"></div>
+    <p class="lead"><span data-i18n="heroLead">Dark electronic soundscapes engineered for coding and uninterrupted deep work.</span> <span class="mu" data-i18n="heroBody">Instrumental soundscapes with steady energy—no vocals, no distractions. Enter The Night Grid.</span></p>
+    <div class="ctas">
+      <a class="btn pri" href="https://www.youtube.com/@Midnight.Runtime" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg><span data-i18n="ctaYt">Watch on YouTube</span></a>
+      <a class="btn" href="#albums"><svg class="ico"><use href="#i-sp"/></svg>Spotify</a>
+    </div>
+  </div>
+  <div class="scene">
+    <div class="name"><span class="cy" id="sceneCode">MR-VIS-001</span><span id="sceneName">Operator workstation</span></div>
+    <div class="bars" id="sceneBars"></div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-track" id="marquee"></div></div>
+
+<section class="sec" id="mixes" aria-labelledby="mixesTitle">
+  <div class="wrap">
+    <div class="sec-kicker" data-reveal><span class="cy">01</span><span class="lbl"><svg class="ico"><use href="#i-yt"/></svg>YouTube</span></div>
+    <div class="sec-head">
+      <h2 id="mixesTitle" data-reveal data-i18n="mixesTitle">Long mixes for long sessions</h2>
+      <a class="btn pri" data-reveal href="https://www.youtube.com/@Midnight.Runtime?sub_confirmation=1" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg><span data-i18n="subscribe">Subscribe</span> · @Midnight.Runtime</a>
+    </div>
+    <div class="rule" data-reveal="line"></div>
+    <div class="feature" data-reveal>
+      <div class="player" id="player"></div>
+      <div class="mix-meta"><span class="cy" id="mixCode"></span><span class="t" id="mixTitle"></span><a id="mixLink" href="https://www.youtube.com/@Midnight.Runtime/videos" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg>youtube.com</a></div>
+    </div>
+    <div class="rail-head"><span class="mu" id="mixCount"></span><div class="rail-nav"><button type="button" class="rn" data-rail="mixRail" data-dir="-1" aria-label="Previous"><svg class="ico"><use href="#i-prev"/></svg></button><button type="button" class="rn" data-rail="mixRail" data-dir="1" aria-label="Next"><svg class="ico"><use href="#i-next"/></svg></button></div></div>
+    <ul class="rail" id="mixRail" aria-label="Mixes"></ul>
+  </div>
+</section>
+
+<section class="sec albums" id="albums" aria-labelledby="relTitle">
+  <div class="wrap">
+    <div class="sec-kicker" data-reveal><span class="cy">02</span><span class="lbl"><svg class="ico"><use href="#i-sp"/></svg><span data-i18n="relKicker">Spotify &amp; streaming</span></span></div>
+    <h2 id="relTitle" data-reveal data-i18n="relTitle">Albums from the grid</h2>
+    <div class="rule" data-reveal="line"></div>
+    <div class="alb-grid">
+      <div class="cover-wrap" data-reveal><div class="cover" id="cover"><div class="shine" id="shine"></div></div></div>
+      <div class="alb-side">
+        <div>
+          <div class="alb-kind"><svg class="ico"><use href="#i-sp"/></svg><span id="albKind"></span></div>
+          <h3 class="alb-title" id="albTitle"></h3>
+          <div class="alb-meta"><span id="albMeta"></span><span class="when"><svg class="ico"><use href="#i-cal"/></svg><span id="albWhen"></span></span><span class="cy" id="albDays"></span></div>
+        </div>
+        <div class="alb-actions" id="albActions"></div>
+        <div>
+          <div class="tl-head"><span data-i18n="tracklist">Tracklist</span><span id="albCount"></span></div>
+          <div class="tl-line"></div>
+          <ol class="tracklist" id="albTracks"></ol>
+        </div>
+      </div>
+    </div>
+    <div class="rail-head"><span class="mu" id="albCountAll"></span><div class="rail-nav"><button type="button" class="rn" data-rail="albRail" data-dir="-1" aria-label="Previous"><svg class="ico"><use href="#i-prev"/></svg></button><button type="button" class="rn" data-rail="albRail" data-dir="1" aria-label="Next"><svg class="ico"><use href="#i-next"/></svg></button></div></div>
+    <ul class="rail" id="albRail" aria-label="Albums"></ul>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="top"></div>
+  <div class="foot-word" id="footWord" aria-hidden="true">MIDNIGHT RUNTIME</div>
+  <p class="tag">Stay in the flow after dark.</p>
+  <div class="foot-cols">
+    <div>
+      <span class="h" data-i18n="channels">Channels</span>
+      <a href="https://www.youtube.com/@Midnight.Runtime" target="_blank" rel="noopener"><svg class="ico"><use href="#i-yt"/></svg>YouTube</a>
+      <span id="footSpotify" class="soon"><svg class="ico"><use href="#i-sp"/></svg><span>Spotify — <span data-i18n="soon">soon</span></span></span>
+    </div>
+    <div>
+      <span class="h" data-i18n="contact">Contact</span>
+      <a href="mailto:midnight.runtime@icloud.com">midnight.runtime@icloud.com</a>
+    </div>
+    <div>
+      <span class="h" data-i18n="legal">Legal</span>
+      <a href="privacy.html" data-i18n="privacy">Privacy policy</a>
+    </div>
+  </div>
+  <p class="fine" data-i18n="disclosure">Music is created with permitted generative tools, then selected, arranged, mixed, and paired with original visual direction by a human curator.</p>
+  <p class="copy">© 2026 Midnight Runtime</p>
+</footer>
+</main>
+
+<div class="mini" id="mini" role="region" aria-label="Now playing" hidden>
+  <img id="miniCover" src="assets/covers/focus-protocol.jpg" alt="">
+  <button type="button" class="pp" id="miniPP" aria-label="Play / pause"><svg class="ico"><use href="#i-pause"/></svg></button>
+  <div class="mid"><div class="row"><span id="miniTitle"></span><span class="mu" id="miniTime">0:00</span></div><div class="bar"><div class="prog" id="miniProg"></div></div></div>
+  <canvas id="viz" width="120" height="56" aria-hidden="true"></canvas>
+  <button type="button" class="x" id="miniX" aria-label="Close"><svg class="ico"><use href="#i-x"/></svg></button>
+</div>
+</body>
+</html>

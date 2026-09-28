@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://unit084.github.io/midnight-runtime/sitemap.xml
