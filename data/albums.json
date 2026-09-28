@@ -5,6 +5,7 @@
     "release": "2026-10-17",
     "min": 72,
     "spotify": null,
+    "apple": null,
     "samples": [],
     "tracks": [
       "Low Bit Rain",
@@ -27,6 +28,7 @@
     "release": "2026-10-10",
     "min": 92,
     "spotify": null,
+    "apple": null,
     "samples": [],
     "tracks": [
       "Cold Boot",
@@ -60,6 +62,7 @@
     "release": "2026-10-03",
     "min": 88,
     "spotify": null,
+    "apple": null,
     "samples": [],
     "tracks": [
       "Cipher Lantern",
@@ -92,6 +95,7 @@
     "release": "2026-09-26",
     "min": 36,
     "spotify": "https://open.spotify.com/album/2O9Y7BPcI4s9W7j8P7XMeF",
+    "apple": "https://music.apple.com/album/focus-protocol/6816978232",
     "samples": [
       {
         "title": "Night Compile",
