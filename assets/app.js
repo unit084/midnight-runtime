@@ -272,6 +272,8 @@ function renderFooter() {
   if (SITE.spotifyArtist && box.tagName !== 'A') { const a = el('a'); a.href = SITE.spotifyArtist; a.target = '_blank'; a.rel = 'noopener'; a.id = 'footSpotify'; a.appendChild(icon('sp')); a.appendChild(document.createTextNode('Spotify')); box.replaceWith(a); }
   const ab = $('footApple');
   if (SITE.appleArtist && ab && ab.tagName !== 'A') { const a = el('a'); a.href = SITE.appleArtist; a.target = '_blank'; a.rel = 'noopener'; a.id = 'footApple'; a.appendChild(icon('ap')); a.appendChild(document.createTextNode('Apple Music')); ab.replaceWith(a); }
+  const ext = (sel, url) => { if (url) document.querySelectorAll(sel).forEach(x => { x.href = url; x.target = '_blank'; x.rel = 'noopener'; }); };
+  ext('[data-sp]', SITE.spotifyArtist); ext('[data-ap]', SITE.appleArtist);
 }
 
 /* ---------- audio sample + visualiser ---------- */
