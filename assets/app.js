@@ -25,7 +25,7 @@ const I18N = {
     openChannel: 'Open on YouTube',
     relKicker: 'Spotify & Apple Music', relTitle: 'Albums from the grid', album: 'Album',
     out: 'Planned release', rolling: 'Rolling out to Spotify, Apple Music & more', daysLeft: 'days',
-    noSample: 'Sample coming soon', spotifySoon: 'Spotify link coming soon', openSpotify: 'Listen on Spotify', openApple: 'Apple Music', tracklist: 'Tracklist',
+    noSample: 'Sample coming soon', spotifySoon: 'Spotify & Apple Music link coming soon', openSpotify: 'Listen on Spotify', openApple: 'Apple Music', tracklist: 'Tracklist',
     channels: 'Channels', soon: 'soon', contact: 'Contact', legal: 'Legal', privacy: 'Privacy policy',
     disclosure: 'Music is created with permitted generative tools, then selected, arranged, mixed, and paired with original visual direction by a human curator.',
     nowPlaying: 'Now playing', mixesN: n => n + (n === 1 ? ' mix' : ' mixes'), albumsN: n => n + (n === 1 ? ' album' : ' albums'), upcoming: 'Upcoming', outNow: 'Out now'
@@ -40,7 +40,7 @@ const I18N = {
     openChannel: 'Otwórz na YouTube',
     relKicker: 'Spotify i Apple Music', relTitle: 'Albumy z siatki', album: 'Album',
     out: 'Planowana premiera', rolling: 'Właśnie trafia na Spotify, Apple Music i inne', daysLeft: 'dni',
-    noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify wkrótce', openSpotify: 'Słuchaj na Spotify', openApple: 'Apple Music', tracklist: 'Lista utworów',
+    noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify i Apple Music wkrótce', openSpotify: 'Słuchaj na Spotify', openApple: 'Apple Music', tracklist: 'Lista utworów',
     channels: 'Kanały', soon: 'wkrótce', contact: 'Kontakt', legal: 'Informacje prawne', privacy: 'Polityka prywatności',
     disclosure: 'Muzyka powstaje z użyciem dozwolonych narzędzi generatywnych, a następnie jest wybierana, układana, miksowana i łączona z autorskim kierunkiem wizualnym przez człowieka-kuratora.',
     nowPlaying: 'Teraz gra', mixesN: n => n + (n === 1 ? ' miks' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' miksy' : ' miksów')), albumsN: n => n + (n === 1 ? ' album' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' albumy' : ' albumów')), upcoming: 'Wkrótce', outNow: 'Już jest'
@@ -245,7 +245,7 @@ function renderAlbum() {
   if (!(R.samples || []).length) { const x = el('span', 'nosample'); x.appendChild(icon('wave')); x.appendChild(document.createTextNode(t.noSample)); acts.appendChild(x); }
   const sp = R.spotify || null;
   if (sp) { const a = el('a', 'btn small'); a.href = sp; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(icon('sp')); a.appendChild(document.createTextNode(t.openSpotify)); acts.appendChild(a); }
-  else { const x = el('span', 'btn small'); x.setAttribute('aria-disabled', 'true'); x.appendChild(icon('sp')); x.appendChild(document.createTextNode(t.spotifySoon)); acts.appendChild(x); }
+  else { const x = el('span', 'btn small'); x.setAttribute('aria-disabled', 'true'); x.appendChild(icon('sp')); x.appendChild(icon('ap')); x.appendChild(document.createTextNode(t.spotifySoon)); acts.appendChild(x); }
   if (R.apple) { const a = el('a', 'btn small'); a.href = R.apple; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(icon('ap')); a.appendChild(document.createTextNode(t.openApple)); acts.appendChild(a); }
   // rail
   const rail = $('albRail'); rail.textContent = '';
