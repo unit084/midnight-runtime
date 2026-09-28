@@ -25,7 +25,7 @@ const I18N = {
     openChannel: 'Open on YouTube',
     relKicker: 'Spotify & streaming', relTitle: 'Albums from the grid', album: 'Album',
     out: 'Planned release', rolling: 'Rolling out to Spotify, Apple Music & more', daysLeft: 'days',
-    noSample: 'Sample coming soon', spotifySoon: 'Spotify link coming soon', openSpotify: 'Listen on Spotify', tracklist: 'Tracklist',
+    noSample: 'Sample coming soon', spotifySoon: 'Spotify link coming soon', openSpotify: 'Listen on Spotify', openApple: 'Apple Music', tracklist: 'Tracklist',
     channels: 'Channels', soon: 'soon', contact: 'Contact', legal: 'Legal', privacy: 'Privacy policy',
     disclosure: 'Music is created with permitted generative tools, then selected, arranged, mixed, and paired with original visual direction by a human curator.',
     nowPlaying: 'Now playing', mixesN: n => n + (n === 1 ? ' mix' : ' mixes'), albumsN: n => n + (n === 1 ? ' album' : ' albums'), upcoming: 'Upcoming', outNow: 'Out now'
@@ -40,7 +40,7 @@ const I18N = {
     openChannel: 'Otwórz na YouTube',
     relKicker: 'Spotify i streaming', relTitle: 'Albumy z siatki', album: 'Album',
     out: 'Planowana premiera', rolling: 'Właśnie trafia na Spotify, Apple Music i inne', daysLeft: 'dni',
-    noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify wkrótce', openSpotify: 'Słuchaj na Spotify', tracklist: 'Lista utworów',
+    noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify wkrótce', openSpotify: 'Słuchaj na Spotify', openApple: 'Apple Music', tracklist: 'Lista utworów',
     channels: 'Kanały', soon: 'wkrótce', contact: 'Kontakt', legal: 'Informacje prawne', privacy: 'Polityka prywatności',
     disclosure: 'Muzyka powstaje z użyciem dozwolonych narzędzi generatywnych, a następnie jest wybierana, układana, miksowana i łączona z autorskim kierunkiem wizualnym przez człowieka-kuratora.',
     nowPlaying: 'Teraz gra', mixesN: n => n + (n === 1 ? ' miks' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' miksy' : ' miksów')), albumsN: n => n + (n === 1 ? ' album' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' albumy' : ' albumów')), upcoming: 'Wkrótce', outNow: 'Już jest'
@@ -55,7 +55,7 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const fine = matchMedia('(pointer: fine)').matches;
 document.documentElement.classList.add('js');
 
-let MIXES = [], RELEASES = [], SITE = { spotifyArtist: null };
+let MIXES = [], RELEASES = [], SITE = { spotifyArtist: null, appleArtist: null };
 const st = { lang: 'en', heroIdx: 0, mixIdx: 0, mixPlaying: false, relIdx: 0, track: null };
 try { st.lang = localStorage.getItem('mr-lang') || ((navigator.language || '').toLowerCase().startsWith('pl') ? 'pl' : 'en'); } catch (e) {}
 if (!I18N[st.lang]) st.lang = 'en';
@@ -246,6 +246,7 @@ function renderAlbum() {
   const sp = R.spotify || null;
   if (sp) { const a = el('a', 'btn small'); a.href = sp; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(icon('sp')); a.appendChild(document.createTextNode(t.openSpotify)); acts.appendChild(a); }
   else { const x = el('span', 'btn small'); x.setAttribute('aria-disabled', 'true'); x.appendChild(icon('sp')); x.appendChild(document.createTextNode(t.spotifySoon)); acts.appendChild(x); }
+  if (R.apple) { const a = el('a', 'btn small'); a.href = R.apple; a.target = '_blank'; a.rel = 'noopener'; a.appendChild(icon('ap')); a.appendChild(document.createTextNode(t.openApple)); acts.appendChild(a); }
   // rail
   const rail = $('albRail'); rail.textContent = '';
   RELEASES.forEach((r, i) => {
@@ -269,6 +270,8 @@ cover.addEventListener('mouseleave', () => { cover.style.transition = 'transform
 function renderFooter() {
   const box = $('footSpotify');
   if (SITE.spotifyArtist && box.tagName !== 'A') { const a = el('a'); a.href = SITE.spotifyArtist; a.target = '_blank'; a.rel = 'noopener'; a.id = 'footSpotify'; a.appendChild(icon('sp')); a.appendChild(document.createTextNode('Spotify')); box.replaceWith(a); }
+  const ab = $('footApple');
+  if (SITE.appleArtist && ab && ab.tagName !== 'A') { const a = el('a'); a.href = SITE.appleArtist; a.target = '_blank'; a.rel = 'noopener'; a.id = 'footApple'; a.appendChild(icon('ap')); a.appendChild(document.createTextNode('Apple Music')); ab.replaceWith(a); }
 }
 
 /* ---------- audio sample + visualiser ---------- */
