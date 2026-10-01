@@ -178,7 +178,7 @@ function renderMixes() {
     b.setAttribute('aria-current', String(i === st.mixIdx));
     const th = el('span', 'th'); const im = el('img'); im.src = m.thumb; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); th.appendChild(icon('yt'));
     const stt = el('span', 'st'); stt.appendChild(el('span', m.prem ? 'dot red' : 'dot'));
-    stt.appendChild(document.createTextNode(m.prem ? `${t.premiere} · ${t.comingSoon}` : fmtDate(m.date)));
+    stt.appendChild(document.createTextNode(m.prem ? t.comingSoon : t.outNow));
     b.append(th, el('span', 'code', 'MR // ' + m.code), el('span', 'nm', m.name), el('span', 'mt', mixMeta(m, t)), stt);
     b.addEventListener('click', () => { st.mixIdx = i; st.mixPlaying = false; renderMixes(); $('player').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); });
     li.appendChild(b); list.appendChild(li);
@@ -221,7 +221,7 @@ function albStatus(R, t) {
   const days = Math.ceil((new Date(R.release + 'T00:00:00').getTime() - Date.now()) / 864e5);
   if (R.spotify) return { when: t.outNow, days: '', live: true };
   if (R.soon) return { when: t.comingSoon, days: '', live: false };
-  if (days > 0) return { when: `${t.out}: ${fmtDate(R.release)}`, days: `T–${days} ${t.daysLeft}`, live: false };
+  if (days > 0) return { when: t.comingSoon, days: '', live: false };
   return { when: t.rolling, days: '', live: true };
 }
 function renderAlbum() {
@@ -253,7 +253,7 @@ function renderAlbum() {
   RELEASES.forEach((r, i) => {
     const li = el('li'), b = el('button', 'card'); b.type = 'button'; b.setAttribute('aria-current', String(i === st.relIdx));
     const th = el('span', 'th sq'); const im = el('img'); im.src = r.cover; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im);
-    const rs = albStatus(r, t), stt = el('span', 'st'); stt.appendChild(el('span', rs.live ? 'dot' : 'dot dim')); stt.appendChild(document.createTextNode(rs.live ? (r.spotify ? t.outNow : fmtDate(r.release)) : (r.soon ? t.comingSoon : `${t.upcoming} · ${fmtDate(r.release)}`)));
+    const rs = albStatus(r, t), stt = el('span', 'st'); stt.appendChild(el('span', rs.live ? 'dot' : 'dot dim')); stt.appendChild(document.createTextNode(rs.live ? t.outNow : t.comingSoon));
     b.append(th, el('span', 'code', 'MR // ' + String(n - i).padStart(3, '0')), el('span', 'nm', r.title), el('span', 'mt', `${r.tracks.length} ${t.tracks}` + (r.min ? ` · ~${r.min} min` : '')), stt);
     b.addEventListener('click', () => { st.relIdx = i; renderAlbum(); cover.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); });
     li.appendChild(b); rail.appendChild(li);
