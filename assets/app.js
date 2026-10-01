@@ -178,7 +178,7 @@ function renderMixes() {
     b.setAttribute('aria-current', String(i === st.mixIdx));
     const th = el('span', 'th'); const im = el('img'); im.src = m.thumb; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); th.appendChild(icon('yt'));
     const stt = el('span', 'st'); stt.appendChild(el('span', m.prem ? 'dot red' : 'dot'));
-    stt.appendChild(document.createTextNode(m.prem ? `${t.premiere} ${fmtDate(m.date)} · ${new Date(m.premiere).toLocaleTimeString(st.lang === 'pl' ? 'pl-PL' : 'en-GB', { hour: '2-digit', minute: '2-digit' })}` : fmtDate(m.date)));
+    stt.appendChild(document.createTextNode(m.prem ? `${t.premiere} · ${t.comingSoon}` : fmtDate(m.date)));
     b.append(th, el('span', 'code', 'MR // ' + m.code), el('span', 'nm', m.name), el('span', 'mt', mixMeta(m, t)), stt);
     b.addEventListener('click', () => { st.mixIdx = i; st.mixPlaying = false; renderMixes(); $('player').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); });
     li.appendChild(b); list.appendChild(li);
