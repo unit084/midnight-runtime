@@ -28,7 +28,7 @@ const I18N = {
     noSample: 'Sample coming soon', spotifySoon: 'Spotify & Apple Music link coming soon', openSpotify: 'Listen on Spotify', openApple: 'Apple Music', tracklist: 'Tracklist',
     channels: 'Channels', soon: 'soon', contact: 'Contact', legal: 'Legal', privacy: 'Privacy policy',
     disclosure: 'Music is created with permitted generative tools, then selected, arranged, mixed, and paired with original visual direction by a human curator.',
-    nowPlaying: 'Now playing', mixesN: n => n + (n === 1 ? ' mix' : ' mixes'), albumsN: n => n + (n === 1 ? ' album' : ' albums'), upcoming: 'Upcoming', outNow: 'Out now'
+    nowPlaying: 'Now playing', mixesN: n => n + (n === 1 ? ' mix' : ' mixes'), albumsN: n => n + (n === 1 ? ' album' : ' albums'), upcoming: 'Upcoming', outNow: 'Out now', comingSoon: 'Coming soon'
   },
   pl: {
     skip: 'Przejdź do treści',
@@ -43,7 +43,7 @@ const I18N = {
     noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify i Apple Music wkrótce', openSpotify: 'Słuchaj na Spotify', openApple: 'Apple Music', tracklist: 'Lista utworów',
     channels: 'Kanały', soon: 'wkrótce', contact: 'Kontakt', legal: 'Informacje prawne', privacy: 'Polityka prywatności',
     disclosure: 'Muzyka powstaje z użyciem dozwolonych narzędzi generatywnych, a następnie jest wybierana, układana, miksowana i łączona z autorskim kierunkiem wizualnym przez człowieka-kuratora.',
-    nowPlaying: 'Teraz gra', mixesN: n => n + (n === 1 ? ' miks' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' miksy' : ' miksów')), albumsN: n => n + (n === 1 ? ' album' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' albumy' : ' albumów')), upcoming: 'Wkrótce', outNow: 'Już jest'
+    nowPlaying: 'Teraz gra', mixesN: n => n + (n === 1 ? ' miks' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' miksy' : ' miksów')), albumsN: n => n + (n === 1 ? ' album' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' albumy' : ' albumów')), upcoming: 'Wkrótce', outNow: 'Już jest', comingSoon: 'Już wkrótce'
   }
 };
 /* ====== end of content ====== */
@@ -220,6 +220,7 @@ function buildAlbums() {
 function albStatus(R, t) {
   const days = Math.ceil((new Date(R.release + 'T00:00:00').getTime() - Date.now()) / 864e5);
   if (R.spotify) return { when: t.outNow, days: '', live: true };
+  if (R.soon) return { when: t.comingSoon, days: '', live: false };
   if (days > 0) return { when: `${t.out}: ${fmtDate(R.release)}`, days: `T–${days} ${t.daysLeft}`, live: false };
   return { when: t.rolling, days: '', live: true };
 }
@@ -252,7 +253,7 @@ function renderAlbum() {
   RELEASES.forEach((r, i) => {
     const li = el('li'), b = el('button', 'card'); b.type = 'button'; b.setAttribute('aria-current', String(i === st.relIdx));
     const th = el('span', 'th sq'); const im = el('img'); im.src = r.cover; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im);
-    const rs = albStatus(r, t), stt = el('span', 'st'); stt.appendChild(el('span', rs.live ? 'dot' : 'dot dim')); stt.appendChild(document.createTextNode(rs.live ? (r.spotify ? t.outNow : fmtDate(r.release)) : `${t.upcoming} · ${fmtDate(r.release)}`));
+    const rs = albStatus(r, t), stt = el('span', 'st'); stt.appendChild(el('span', rs.live ? 'dot' : 'dot dim')); stt.appendChild(document.createTextNode(rs.live ? (r.spotify ? t.outNow : fmtDate(r.release)) : (r.soon ? t.comingSoon : `${t.upcoming} · ${fmtDate(r.release)}`)));
     b.append(th, el('span', 'code', 'MR // ' + String(n - i).padStart(3, '0')), el('span', 'nm', r.title), el('span', 'mt', `${r.tracks.length} ${t.tracks}` + (r.min ? ` · ~${r.min} min` : '')), stt);
     b.addEventListener('click', () => { st.relIdx = i; renderAlbum(); cover.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' }); });
     li.appendChild(b); rail.appendChild(li);
@@ -401,7 +402,7 @@ Promise.all([getJSON('data/videos.json'), getJSON('data/upcoming.json'), getJSON
   MIXES = buildMixes(v, u);
   st.mixIdx = Math.max(0, MIXES.findIndex(m => m.yt));
   RELEASES = (Array.isArray(a) ? a : []).filter(r => r && r.title && Array.isArray(r.tracks)).sort((x, y) => String(y.release).localeCompare(String(x.release)));
-  const firstOut = RELEASES.findIndex(r => r.spotify || new Date(r.release + 'T00:00:00').getTime() <= Date.now());
+  const firstOut = RELEASES.findIndex(r => r.spotify || (!r.soon && new Date(r.release + 'T00:00:00').getTime() <= Date.now()));
   st.relIdx = firstOut >= 0 ? firstOut : 0;
   buildMarquee(); buildAlbums(); applyLang();
   requestAnimationFrame(() => { layout(); document.querySelectorAll('[data-reveal]:not(.in)').forEach(n => { if (n.getBoundingClientRect().top < innerHeight) n.classList.add('in'); }); });
