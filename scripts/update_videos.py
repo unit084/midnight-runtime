@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Refresh data/videos.json from the public YouTube RSS feed (no API key).
 
-- adds new long videos (Shorts are skipped), keeps older ones the feed no longer lists
+- adds new long videos (Shorts and the 24/7 live radio are skipped), keeps older ones the feed no longer lists
+- removes live-radio entries ("24/7" in the title); the live is reached via the Live button
 - keeps fields edited by hand (e.g. "min", "tracks", "name")
 - downloads a thumbnail for new videos into assets/thumbs/yt/<id>.jpg
 Prints changed=true/false for the workflow.
@@ -29,14 +30,20 @@ def minutes(title):
     return int(m.group(1)) if m else None
 
 
+def is_live(title):
+    return '24/7' in title
+
+
 def main():
     try:
         with open(DATA, encoding='utf-8') as f:
             videos = json.load(f)
     except FileNotFoundError:
         videos = []
-    by_id = {v['id']: v for v in videos}
     before = json.dumps(videos, sort_keys=True)
+    videos = [v for v in videos if not is_live(v.get('title', ''))]
+    by_id = {v['id']: v for v in videos}
+    new_thumbs = False
 
     root = ET.fromstring(get(FEED))
     for e in root.findall('a:entry', NS):
@@ -45,6 +52,8 @@ def main():
         if not ID_RE.match(vid or '') or '/shorts/' in link:
             continue
         title = (e.find('a:title', NS).text or '').strip()
+        if is_live(title):
+            continue
         published = e.find('a:published', NS).text[:10]
         v = by_id.get(vid)
         if v is None:
@@ -65,6 +74,7 @@ def main():
                     if len(data) > 2000:
                         with open(thumb, 'wb') as f:
                             f.write(data)
+                        new_thumbs = True
                         break
                 except Exception:
                     continue
@@ -75,7 +85,7 @@ def main():
         with open(DATA, 'w', encoding='utf-8') as f:
             json.dump(videos, f, ensure_ascii=False, indent=2)
             f.write('\n')
-    changed = after != before
+    changed = after != before or new_thumbs
     print(f'changed={"true" if changed else "false"}')
     out = os.environ.get('GITHUB_OUTPUT')
     if out:
