@@ -9,11 +9,7 @@
    Adding content = editing those files; this script stays untouched. */
 const HERO_MS = 9000;
 const HERO = [
-  { src: 'assets/video/loop-miru.mp4', poster: 'assets/scenes/runtime-room.jpg', code: 'MR-VIS-000', en: 'The Runtime Room · Miru', pl: 'Pokój Miru · The Runtime Room' },
-  { src: 'assets/video/loop-001.mp4', poster: 'assets/scenes/operator-workstation.jpg', code: 'MR-VIS-001', en: 'Operator workstation', pl: 'Stanowisko operatora' },
-  { src: 'assets/video/loop-009.mp4', poster: 'assets/scenes/night-bus.jpg', code: 'MR-VIS-009', en: 'Night bus', pl: 'Nocny autobus' },
-  { src: 'assets/video/loop-010.mp4', poster: 'assets/scenes/harbor-lights.jpg', code: 'MR-VIS-010', en: 'Harbor lights', pl: 'Światła portu' },
-  { src: 'assets/video/loop-012.mp4', poster: 'assets/scenes/night-laundromat.jpg', code: 'MR-VIS-012', en: 'Night laundromat', pl: 'Nocna pralnia' }
+  { src: 'assets/video/loop-miru-v2.mp4', poster: 'assets/scenes/runtime-room.jpg', code: 'MR-VIS-000', en: 'The Runtime Room · Miru', pl: 'Pokój Miru · The Runtime Room' }
 ];
 const I18N = {
   en: {
@@ -391,7 +387,7 @@ function loop(now) {
   if (!reduced) { marqueeX -= .45 + level * 2 + Math.min(12, Math.abs(vel) * .25); const half = mq.scrollWidth / 2; if (-marqueeX > half) marqueeX += half; mq.style.transform = `translate3d(${marqueeX}px,0,0)`; }
   const hp = Math.min(1, (now - heroStart) / HERO_MS);
   if (sy < ih) heroEls[st.heroIdx].f.style.width = (hp * 100) + '%';
-  if (hp >= 1 && sy < ih) goHero((st.heroIdx + 1) % HERO.length); else if (hp >= 1) heroStart = now - HERO_MS;
+  if (hp >= 1 && sy < ih && HERO.length > 1) goHero((st.heroIdx + 1) % HERO.length); else if (hp >= 1) heroStart = now - HERO_MS;
   if (footTop) { const bt = footTop - sy; if (bt < ih) footWord.style.transform = `translate3d(${(bt - ih) * .15}px,0,0)`; }
   if (cursorEl) cursorEl.style.opacity = Math.floor(now / 530) % 2 ? 0 : 1;
   drawGrid(sy);
