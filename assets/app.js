@@ -9,7 +9,7 @@
    Adding content = editing those files; this script stays untouched. */
 const HERO_MS = 9000;
 const HERO = [
-  { src: 'assets/video/loop-miru-v2.mp4', poster: 'assets/scenes/runtime-room.jpg', code: 'MR-VIS-000', en: 'The Runtime Room · Miru', pl: 'Pokój Miru · The Runtime Room' }
+  { src: 'assets/video/loop-miru-v3.mp4', poster: 'assets/scenes/runtime-room-v3.jpg', code: 'MR-VIS-000', en: 'The Runtime Room · Miru', pl: 'Pokój Miru · The Runtime Room' }
 ];
 const I18N = {
   en: {
