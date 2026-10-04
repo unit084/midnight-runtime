@@ -14,9 +14,9 @@ const HERO = [
 const I18N = {
   en: {
     skip: 'Skip to content',
-    heroKicker: 'MR // Dark electronic for deep work',
-    heroLead: 'Dark electronic soundscapes engineered for coding and uninterrupted deep work.',
-    heroBody: 'Instrumental soundscapes with steady energy—no vocals, no distractions. Enter The Night Grid.',
+    heroKicker: 'MR // Steady night music',
+    heroLead: 'Steady night music that keeps the room still — so you can work, think, read, or simply breathe.',
+    heroBody: 'Dub techno and dark electronic soundscapes with steady energy—no vocals, no drops. Enter The Night Grid; Miru is already there.',
     ctaYt: 'Watch on YouTube', mixesTitle: 'Long mixes for long sessions', subscribe: 'Subscribe', ctaLive: 'Live radio 24/7', navLive: 'Live',
     tracks: 'tracks', premiere: 'Premiere', loadVideo: 'Play video', ytNotice: 'Playing loads the YouTube player (youtube-nocookie.com), which connects to Google.',
     openChannel: 'Open on YouTube',
@@ -29,9 +29,9 @@ const I18N = {
   },
   pl: {
     skip: 'Przejdź do treści',
-    heroKicker: 'MR // Mroczna elektronika do głębokiej pracy',
-    heroLead: 'Mroczne elektroniczne pejzaże dźwiękowe do kodowania i nieprzerwanej, głębokiej pracy.',
-    heroBody: 'Instrumentalnie, ze stałą energią — bez wokali, bez rozpraszaczy. Wejdź do The Night Grid.',
+    heroKicker: 'MR // Spokojna nocna muzyka',
+    heroLead: 'Spokojna nocna muzyka, która trzyma pokój w ciszy — żebyś mógł pracować, myśleć, czytać albo po prostu odetchnąć.',
+    heroBody: 'Dub techno i mroczna elektronika ze stałą energią — bez wokali, bez dropów. Wejdź do The Night Grid; Miru już tam jest.',
     ctaYt: 'Oglądaj na YouTube', mixesTitle: 'Długie miksy na długie sesje', subscribe: 'Subskrybuj', ctaLive: 'Radio na żywo 24/7', navLive: 'Na żywo',
     tracks: 'utworów', premiere: 'Premiera', loadVideo: 'Odtwórz film', ytNotice: 'Odtworzenie wczyta odtwarzacz YouTube (youtube-nocookie.com), który łączy się z Google.',
     openChannel: 'Otwórz na YouTube',
