@@ -1,5 +1,74 @@
 [
   {
+    "title": "Service Tunnel",
+    "cover": "assets/covers/service-tunnel.jpg",
+    "release": "2026-10-17",
+    "soon": true,
+    "min": 60,
+    "spotify": null,
+    "apple": null,
+    "samples": [],
+    "tracks": [
+      "Platform Closed",
+      "Lamp Every Twelve Metres",
+      "Drip Line",
+      "Cable Tray",
+      "Third Rail Hum",
+      "Water on the Sleepers",
+      "Maintenance Window",
+      "Ventilation Shaft C",
+      "Access Door 7B",
+      "Night Crew Tea",
+      "Before the First Train"
+    ]
+  },
+  {
+    "title": "Night Grid, Vol. 1",
+    "cover": "assets/covers/night-grid-vol1.jpg",
+    "release": "2026-10-24",
+    "soon": true,
+    "min": 44,
+    "spotify": null,
+    "apple": null,
+    "samples": [],
+    "tracks": [
+      "Cipher Lantern",
+      "Obsidian Packet",
+      "Voltage Trace",
+      "Neon Cache",
+      "Prism Carrier",
+      "Ghost Lattice",
+      "Magnetic Avenue",
+      "Carbon Latch",
+      "Concrete Handshake",
+      "Cathode Haze",
+      "Deadband"
+    ]
+  },
+  {
+    "title": "Night Grid, Vol. 2",
+    "cover": "assets/covers/night-grid-vol2.jpg",
+    "release": "2026-10-10",
+    "soon": true,
+    "min": 44,
+    "spotify": null,
+    "apple": null,
+    "samples": [],
+    "tracks": [
+      "Blue Hour Terminal",
+      "Glass Overpass",
+      "Checksum Drift",
+      "Offset Drive",
+      "Hollow Observatory",
+      "Folded Signal",
+      "Infrared Junction",
+      "Ternary Window",
+      "Sync Threshold",
+      "Bitplane Shift",
+      "Null Meridian"
+    ]
+  },
+  {
     "title": "Rainy Night Coding",
     "cover": "assets/covers/rainy-night-coding.jpg",
     "release": "2026-10-17",
@@ -56,40 +125,6 @@
       "Reverse Clock",
       "Lullaby Protocol",
       "Sonar Depth"
-    ]
-  },
-  {
-    "title": "Night Grid",
-    "cover": "assets/covers/night-grid.jpg",
-    "release": "2026-10-03",
-    "soon": true,
-    "min": 88,
-    "spotify": null,
-    "apple": null,
-    "samples": [],
-    "tracks": [
-      "Cipher Lantern",
-      "Obsidian Packet",
-      "Voltage Trace",
-      "Neon Cache",
-      "Prism Carrier",
-      "Ghost Lattice",
-      "Magnetic Avenue",
-      "Carbon Latch",
-      "Concrete Handshake",
-      "Cathode Haze",
-      "Deadband",
-      "Blue Hour Terminal",
-      "Glass Overpass",
-      "Checksum Drift",
-      "Offset Drive",
-      "Hollow Observatory",
-      "Folded Signal",
-      "Infrared Junction",
-      "Ternary Window",
-      "Sync Threshold",
-      "Bitplane Shift",
-      "Null Meridian"
     ]
   },
   {
