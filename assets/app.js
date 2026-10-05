@@ -131,18 +131,28 @@ let cursorEl = null;
 const getJSON = url => fetch(url, { cache: 'no-cache' }).then(r => r.ok ? r.json() : []).catch(() => []);
 const shortName = t => { const parts = String(t).split('|').map(x => x.trim()); const p = parts.find(x => !/music/i.test(x)) || parts[parts.length - 1]; return p.replace(/\(?\b\d{2,3}\s*-?\s*min(ute)?s?\)?/ig, '').replace(/\s{2,}/g, ' ').trim(); };
 function buildMixes(videos, upcoming) {
-  const now = Date.now();
-  const up = (upcoming || []).filter(u => u.premiere && new Date(u.premiere).getTime() > now)
-    .map(u => ({ ...u, yt: null, date: u.premiere.slice(0, 10), prem: true }));
-  const vids = (videos || []).filter(v => /^[A-Za-z0-9_-]{11}$/.test(v.id)).map(v => ({
+  const now = Date.now(), okId = id => /^[A-Za-z0-9_-]{11}$/.test(id || '');
+  const ups = (upcoming || []).filter(u => u && u.premiere && !isNaN(new Date(u.premiere).getTime()));
+  const soon = new Set(ups.filter(u => new Date(u.premiere).getTime() > now && okId(u.id)).map(u => u.id));
+  const vids = (videos || []).filter(v => okId(v.id) && !soon.has(v.id)).map(v => ({
     yt: v.id, title: v.title, name: v.name || shortName(v.title), min: v.min, tracks: v.tracks, date: v.date,
     thumb: v.thumb || `assets/thumbs/yt/${v.id}.jpg`
-  })).sort((a, b) => String(b.date).localeCompare(String(a.date)));
-  const all = up.concat(vids);
+  }));
+  const known = new Set(vids.map(v => v.yt)), up = [];
+  /* a premiere shows as "Coming soon"; once it starts it becomes a normal playable mix (no wait for the RSS update) */
+  ups.forEach(u => {
+    const id = okId(u.id) ? u.id : null;
+    if (new Date(u.premiere).getTime() > now) up.push({ ...u, yt: null, pid: id, date: u.premiere.slice(0, 10), prem: true });
+    else if (id && !known.has(id)) vids.push({ yt: id, title: u.title, name: u.name || shortName(u.title), min: u.min, tracks: u.tracks, date: u.premiere.slice(0, 10), thumb: u.thumb || `assets/thumbs/yt/${id}.jpg` });
+  });
+  const byDate = (a, b) => String(b.date).localeCompare(String(a.date));
+  const all = up.sort(byDate).concat(vids.sort(byDate));
   const n = all.length;
   all.forEach((m, i) => { m.code = String(n - i).padStart(3, '0'); });
   return all;
 }
+const THUMB_FALLBACK = 'assets/scenes/runtime-room-v3.jpg';
+const safeThumb = im => { im.onerror = () => { im.onerror = null; im.src = THUMB_FALLBACK; }; };
 
 /* ---------- marquee ---------- */
 const mq = $('marquee');
@@ -173,7 +183,7 @@ function renderMixes() {
   MIXES.forEach((m, i) => {
     const li = el('li'), b = el('button', 'card'); b.type = 'button';
     b.setAttribute('aria-current', String(i === st.mixIdx));
-    const th = el('span', 'th'); const im = el('img'); im.src = m.thumb; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); th.appendChild(icon('yt'));
+    const th = el('span', 'th'); const im = el('img'); safeThumb(im); im.src = m.thumb; im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; th.appendChild(im); th.appendChild(icon('yt'));
     const stt = el('span', 'st'); stt.appendChild(el('span', m.prem ? 'dot red' : 'dot'));
     stt.appendChild(document.createTextNode(m.prem ? t.comingSoon : t.outNow));
     b.append(th, el('span', 'code', 'MR // ' + m.code), el('span', 'nm', m.name), el('span', 'mt', mixMeta(m, t)), stt);
@@ -191,20 +201,20 @@ function renderPlayer() {
     f.title = m.title; f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.referrerPolicy = 'strict-origin-when-cross-origin'; f.allowFullscreen = true;
     p.appendChild(f);
   } else {
-    const im = el('img'); im.src = m.thumb; im.alt = m.title; p.appendChild(im); p.appendChild(el('div', 'fade'));
+    const im = el('img'); safeThumb(im); im.src = m.thumb; im.alt = m.title; p.appendChild(im); p.appendChild(el('div', 'fade'));
     const c = el('div', 'ctrl');
     if (m.yt) {
       const b = el('button', 'btn pri glass'); b.type = 'button'; b.appendChild(icon('yt')); b.appendChild(document.createTextNode(t.loadVideo));
       b.addEventListener('click', () => { st.mixPlaying = true; renderPlayer(); });
       c.append(b, el('span', 'note', t.ytNotice));
     } else {
-      const a = el('a', 'btn pri glass'); a.href = (SITE.youtube || 'https://www.youtube.com/@Midnight.Runtime') + '/videos'; a.target = '_blank'; a.rel = 'noopener';
+      const a = el('a', 'btn pri glass'); a.href = m.pid ? `https://www.youtube.com/watch?v=${encodeURIComponent(m.pid)}` : (SITE.youtube || 'https://www.youtube.com/@Midnight.Runtime') + '/videos'; a.target = '_blank'; a.rel = 'noopener';
       a.appendChild(icon('yt')); a.appendChild(document.createTextNode(t.openChannel)); c.appendChild(a);
     }
     p.appendChild(c);
   }
   $('mixCode').textContent = 'MR // ' + m.code; $('mixTitle').textContent = m.title;
-  $('mixLink').href = m.yt ? `https://www.youtube.com/watch?v=${encodeURIComponent(m.yt)}` : 'https://www.youtube.com/@Midnight.Runtime/videos';
+  $('mixLink').href = (m.yt || m.pid) ? `https://www.youtube.com/watch?v=${encodeURIComponent(m.yt || m.pid)}` : 'https://www.youtube.com/@Midnight.Runtime/videos';
 }
 
 /* ---------- albums ---------- */
