@@ -25,11 +25,10 @@
   {
     "title": "Night Grid, Vol. 1",
     "cover": "assets/covers/night-grid-vol1.jpg",
-    "release": "2026-10-24",
-    "soon": true,
+    "release": "2026-10-01",
     "min": 44,
-    "spotify": null,
-    "apple": null,
+    "spotify": "https://open.spotify.com/album/2EPLRCNVuQ1SKHxVKveJvn",
+    "apple": "https://music.apple.com/album/night-grid-vol-1/6818759486",
     "samples": [],
     "tracks": [
       "Cipher Lantern",
