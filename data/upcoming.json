@@ -1,10 +1,20 @@
 [
   {
+    "id": "1b24ApT9yPY",
     "name": "Service Tunnel",
-    "title": "Late Night Dub Techno | Deep Focus Music for Coding & Study (1 Hour)",
+    "title": "Late Night Deep and Dub Techno | Deep Focus Music for Coding & Study (1 Hour)",
     "min": 59,
     "tracks": 11,
-    "premiere": "2026-10-08T18:00:00+02:00",
-    "thumb": "assets/thumbs/upcoming-006.jpg"
+    "premiere": "2026-10-07T18:00:00+02:00",
+    "thumb": "assets/thumbs/yt/1b24ApT9yPY.jpg"
+  },
+  {
+    "id": "-9iRq-tL3do",
+    "name": "Polar Station",
+    "title": "Arctic Dub Techno | Deep Focus Mix for Work, Coding & Relaxing (90 Min)",
+    "min": 87,
+    "tracks": 17,
+    "premiere": "2026-10-10T18:00:00+02:00",
+    "thumb": "assets/thumbs/yt/-9iRq-tL3do.jpg"
   }
 ]
