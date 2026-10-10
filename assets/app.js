@@ -14,9 +14,9 @@ const HERO = [
 const I18N = {
   en: {
     skip: 'Skip to content',
-    heroKicker: 'MR // Steady night music',
+    heroKicker: 'MR // Steady music after dark',
     heroLead: 'Steady night music that keeps the room still — so you can work, think, read, or simply breathe.',
-    heroBody: 'Deep, dub and dark electronic soundscapes with steady energy—no vocals, no drops. Enter The Night Grid; Miru is already there.',
+    heroBody: 'Dub techno, ambient and deep electronic with a steady pulse — no vocals, no drops. Enter The Night Grid; Miru is already there.',
     ctaYt: 'Watch on YouTube', mixesTitle: 'Long mixes for long sessions', subscribe: 'Subscribe', ctaLive: 'Live radio 24/7', navLive: 'Live',
     tracks: 'tracks', premiere: 'Premiere', loadVideo: 'Play video', ytNotice: 'Playing loads the YouTube player (youtube-nocookie.com), which connects to Google.',
     openChannel: 'Open on YouTube',
@@ -24,14 +24,14 @@ const I18N = {
     out: 'Planned release', rolling: 'Rolling out to Spotify, Apple Music & more', daysLeft: 'days',
     noSample: 'Sample coming soon', spotifySoon: 'Spotify & Apple Music link coming soon', openSpotify: 'Listen on Spotify', openApple: 'Apple Music', tracklist: 'Tracklist',
     channels: 'Channels', soon: 'soon', contact: 'Contact', legal: 'Legal', privacy: 'Privacy policy',
-    disclosure: 'Music is created with permitted generative tools, then selected, arranged, mixed, and paired with original visual direction by a human curator.',
+    disclosure: 'How it\'s made: MIX 001–008 were made with generative music tools, then hand-picked, sequenced and mastered. From MIX 009 on, new mixes are made in our own studio with no generative music models — every sound comes from real producers, then cut, layered, arranged and mixed.',
     nowPlaying: 'Now playing', mixesN: n => n + (n === 1 ? ' mix' : ' mixes'), albumsN: n => n + (n === 1 ? ' album' : ' albums'), upcoming: 'Upcoming', outNow: 'Out now', comingSoon: 'Coming soon'
   },
   pl: {
     skip: 'Przejdź do treści',
-    heroKicker: 'MR // Spokojna nocna muzyka',
+    heroKicker: 'MR // Spokojna muzyka po zmroku',
     heroLead: 'Spokojna nocna muzyka, która trzyma pokój w ciszy — żebyś mógł pracować, myśleć, czytać albo po prostu odetchnąć.',
-    heroBody: 'Deep, dub i mroczna elektronika ze stałą energią — bez wokali, bez dropów. Wejdź do The Night Grid; Miru już tam jest.',
+    heroBody: 'Dub techno, ambient i głęboka elektronika z równym pulsem — bez wokali, bez dropów. Wejdź do The Night Grid; Miru już tam jest.',
     ctaYt: 'Oglądaj na YouTube', mixesTitle: 'Długie miksy na długie sesje', subscribe: 'Subskrybuj', ctaLive: 'Radio na żywo 24/7', navLive: 'Na żywo',
     tracks: 'utworów', premiere: 'Premiera', loadVideo: 'Odtwórz film', ytNotice: 'Odtworzenie wczyta odtwarzacz YouTube (youtube-nocookie.com), który łączy się z Google.',
     openChannel: 'Otwórz na YouTube',
@@ -39,7 +39,7 @@ const I18N = {
     out: 'Planowana premiera', rolling: 'Właśnie trafia na Spotify, Apple Music i inne', daysLeft: 'dni',
     noSample: 'Próbka wkrótce', spotifySoon: 'Link do Spotify i Apple Music wkrótce', openSpotify: 'Słuchaj na Spotify', openApple: 'Apple Music', tracklist: 'Lista utworów',
     channels: 'Kanały', soon: 'wkrótce', contact: 'Kontakt', legal: 'Informacje prawne', privacy: 'Polityka prywatności',
-    disclosure: 'Muzyka powstaje z użyciem dozwolonych narzędzi generatywnych, a następnie jest wybierana, układana, miksowana i łączona z autorskim kierunkiem wizualnym przez człowieka-kuratora.',
+    disclosure: 'Jak to powstaje: MIX 001–008 zostały stworzone generatywnymi narzędziami muzycznymi, potem ręcznie wybrane, ułożone i zmasterowane. Od MIX 009 nowe miksy powstają w naszym własnym studiu, bez generatywnych modeli muzycznych — każdy dźwięk pochodzi od prawdziwych producentów, a potem jest cięty, nakładany, aranżowany i miksowany.',
     nowPlaying: 'Teraz gra', mixesN: n => n + (n === 1 ? ' miks' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' miksy' : ' miksów')), albumsN: n => n + (n === 1 ? ' album' : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? ' albumy' : ' albumów')), upcoming: 'Wkrótce', outNow: 'Już jest', comingSoon: 'Już wkrótce'
   }
 };
